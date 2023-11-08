@@ -1,0 +1,202 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  person: Person!
+  username: String!
+  password: String!
+  roles: [String!]!
+  status: String!
+  annotations: String
+  dateCreate: String
+  userCreate: String
+  dateUpdate: String
+  userUpdate: String
+}
+
+type Person {
+  id: ID!
+  document: String!
+  documentType: String!
+  names: String!
+  surNames: String!
+  landline: String
+  mobilePhone: String!
+  email: String!
+  address: String
+  birthdate: String
+  gender: String!
+  annotations: String
+  status: String!
+  dateCreate: String
+  userCreate: String
+  dateUpdate: String
+  userUpdate: String
+}
+
+type UserCreateResponse {
+  person: Person!
+  user: User!
+}
+
+type AuthResponse {
+  token: String!
+  user: User!
+}
+
+type Room {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Restaurant {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  revalidateToken: AuthResponse!
+  users(roles: [ValidRoles!] = []): [User!]!
+  user(id: Int!): User!
+  persons: [Person!]!
+  person(id: Int!): Person!
+  personsSearch(searchPersonsArgs: SearchPersonsArgs!): [Person!]!
+  rooms: [Room!]!
+  room(id: Int!): Room!
+  restaurant(id: Int!): Restaurant!
+}
+
+"""
+Minim dolore adipisicing sit nisi amet ut minim ullamco reprehenderit proident.
+"""
+enum ValidRoles {
+  ADMIN
+  USER
+  SUPER_USER
+  DEV
+}
+
+input SearchPersonsArgs {
+  names: String
+  surNames: String
+  email: String
+  status: String
+  generalCriterial: String
+}
+
+type Mutation {
+  login(loginInput: LoginInput!): AuthResponse!
+  createUser(createUserInput: CreateUserInput!): UserCreateResponse!
+  updateUser(updateUserInput: UpdateUserInput!): UserCreateResponse!
+  blockUser(id: Int!): UserCreateResponse!
+  createPerson(createPersonInput: CreatePersonInput!): Person!
+  updatePerson(updatePersonInput: UpdatePersonInput!): Person!
+  removePerson(id: Int!): Person!
+  activedPerson(id: Int!): Person!
+  createRoom(createRoomInput: CreateRoomInput!): Room!
+  updateRoom(updateRoomInput: UpdateRoomInput!): Room!
+  removeRoom(id: Int!): Room!
+  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
+  updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
+  removeRestaurant(id: Int!): Restaurant!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+input CreateUserInput {
+  person: Int!
+  username: String!
+  password: String!
+  roles: [String!]!
+  status: String
+  annotations: String
+  dateCreate: DateTime
+  userCreate: String
+  dateUpdate: DateTime
+  userUpdate: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input UpdateUserInput {
+  person: Int
+  username: String
+  password: String
+  roles: [ValidRoles!]
+  status: String
+  annotations: String
+  dateCreate: DateTime
+  userCreate: String
+  dateUpdate: DateTime
+  userUpdate: String
+  id: Int!
+}
+
+input CreatePersonInput {
+  document: String!
+  documentType: String!
+  names: String!
+  surNames: String!
+  landline: String
+  mobilePhone: String!
+  email: String!
+  address: String
+  birthdate: DateTime
+  gender: String!
+  annotations: String
+  status: String
+  dateCreate: DateTime
+  userCreate: String
+  dateUpdate: DateTime
+  userUpdate: String
+}
+
+input UpdatePersonInput {
+  document: String
+  documentType: String
+  names: String
+  surNames: String
+  landline: String
+  mobilePhone: String
+  email: String
+  address: String
+  birthdate: DateTime
+  gender: String
+  annotations: String
+  status: String
+  dateCreate: DateTime
+  userCreate: String
+  dateUpdate: DateTime
+  userUpdate: String
+  id: Int!
+}
+
+input CreateRoomInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateRoomInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateRestaurantInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateRestaurantInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
